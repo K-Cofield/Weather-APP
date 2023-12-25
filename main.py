@@ -4,7 +4,7 @@ import requests
 import os
 
 def get_weather(api_key, location):
-    url = f"http://api.openweathermap.org/data/2.5/weather?q={location}&appid={api_key}&units=metric"
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={location}&appid={api_key}&units=imperial"  # Changed units to imperial
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
@@ -28,7 +28,7 @@ def main():
         temperature, humidity, description = get_weather(api_key, location)
         if temperature is not None:
             print(f"Weather in {location}:")
-            print(f"Temperature: {temperature} °C, Humidity: {humidity}%, Description: {description}")
+            print(f"Temperature: {temperature} °F, Humidity: {humidity}%, Description: {description}")  # Changed temperature unit to °F
         else:
             print("Error: Location not found or API error.")
 
